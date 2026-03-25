@@ -20,19 +20,8 @@ npm install
 npm run install:all
 ```
 
-## 3) Configure ENV
-### Backend
-Create: `backend/.env`
 
-```env
-PORT=4518
-MONGO_URI=mongodb://127.0.0.1:27017/college_placement
-JWT_SECRET=change_this_to_any_long_random_string
-```
-
-> If your MongoDB is different (atlas or auth), update `MONGO_URI` accordingly.
-
-## 4) Run (Frontend + Backend together)
+## 3) Run (Frontend + Backend together)
 From project root:
 
 ```bash
@@ -42,7 +31,7 @@ npm run dev
 - Backend: http://localhost:4518
 - Frontend: http://localhost:5173
 
-## 5) First Use
+## 4) First Use
 - Go to **/student/signup** and create a student account
 - Go to **/tpo/signup** and create a TPO account
 - Login and use dashboards
