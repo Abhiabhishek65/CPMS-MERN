@@ -1,0 +1,1079 @@
+
+
+:root{
+  font-family: system-ui, Arial, sans-serif;
+  --nav-bg: rgba(255,255,255,0.86);
+  --nav-border: rgba(255,255,255,0.35);
+  --card-bg: rgba(255,255,255,0.78);
+  --overlay: rgba(0,0,0,0.55);
+  --primary: #002147;
+  --secondary: #4a5568;
+  --danger: #b00020;
+  --nav-h: 64px; 
+    
+}
+
+*{ box-sizing: border-box; }
+
+html{
+  
+  scroll-padding-top: calc(var(--nav-h) + 10px);
+}
+
+body{
+  margin: 0;
+  background: #f6f7fb;
+  color: #111;
+  
+   
+}
+
+a{ color: inherit; text-decoration: none; }
+
+.container{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  /* ✅ ensures first content never hides under sticky navbar */
+  padding-top: calc(20px + var(--nav-h) * 0);
+}
+
+/* ========= NAVBAR (ONLY sticky element) ========= */
+.nav{
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+
+  /* ✅ grid prevents “links going inside/down” issues */
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px 20px;
+  min-height: var(--nav-h);
+
+  background: var(--nav-bg);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--nav-border);
+}
+
+/* left side brand area (safe defaults) */
+.nav .brand,
+.nav .left{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+/* right side links */
+.nav .links{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 30px;
+  font-size: 17px;
+
+  /* Desktop: keep one line, never “drop inside” */
+  white-space: nowrap;
+  flex-wrap: nowrap;
+}
+
+
+.nav .links .nav-link{
+  padding: 8px 12px;
+  border-radius: 10px;
+  transition: background .15s ease, color .15s ease;
+}
+
+.nav .links .nav-link.active{
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+}
+
+.nav .links .nav-link:hover{
+  background: rgba(0, 33, 71, 0.12);
+}
+
+/* Mobile: links move to next line neatly (still inside navbar) */
+@media (max-width: 720px){
+  .nav{
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .nav .links{
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    white-space: normal;
+  }
+}
+/* ========= END NAVBAR ========= */
+
+.badge{
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #eef2ff;
+}
+
+.grid{ display: grid; gap: 14px; }
+.grid-2{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 820px){ .grid-2{ grid-template-columns: 1fr; } }
+
+.row{ display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+/* Cards */
+.card{
+  background: var(--card-bg);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  border: 1px solid rgba(255,255,255,0.35);
+}
+
+/* Buttons */
+.btn{
+  border: none;
+  cursor: pointer;
+  background: var(--primary);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: transform .08s ease, opacity .12s ease;
+}
+.btn:hover{ opacity: .95; }
+.btn:active{ transform: translateY(1px); }
+.btn.secondary{ background: var(--secondary); color: #fff; }
+.btn.danger{ background: var(--danger); }
+
+/* Inputs */
+.input{
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid rgba(0,0,0,0.14);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.92);
+}
+
+label{ font-size: 12px; color: #555; }
+h1,h2,h3{ margin: 0 0 10px; }
+small.muted{ color: #666; }
+
+/* Tables */
+.table{
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255,255,255,0.80);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.table th{
+  background: var(--primary);
+  color: #fff;
+}
+.table th, .table td{
+  padding: 10px 10px;
+  border: 1px solid rgba(0,0,0,0.10);
+  text-align: left;
+  vertical-align: top;
+}
+
+/* KPI */
+.kpi{
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(255,255,255,0.40);
+}
+
+
+:root{ --itm-overlay: rgba(0,0,0,0.55); }
+
+body.college-theme {
+  min-height: 100vh;
+  background: linear-gradient(var(--itm-overlay), var(--itm-overlay)),
+              url("./assets/college-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Hero */
+.hero{
+  padding: 28px 18px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.35);
+}
+.hero h1{
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: 0.5px;
+}
+.hero .subtitle{
+  margin-top: 8px;
+  color: #444;
+}
+.brand-badge{
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  font-size: 19px;
+}
+
+/* ========= Home Page Sections (NOT sticky) ========= */
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  color: white;
+  padding:14px 16px;
+  border-radius:16px;
+  background: rgba(255,255,255,0.78);
+  background: rgba(0,33,71,0.52);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.40);
+
+  /* ✅ IMPORTANT: NOT sticky => prevents all overlaps */
+  position: relative;
+  z-index: 1;
+
+  margin-top: 16px;
+}
+
+.brand{ display:flex; align-items:center; gap:12px;color: white; min-width: 0; }
+.logoCircle{
+  width:90px; height:90px;
+  border-radius:999px;
+  display:flex; align-items:center; justify-content:center;
+  background: var(--primary);
+  color:#fff;
+  font-weight:800;
+  letter-spacing:0.6px;
+  overflow: hidden;
+}
+.logoImg{
+  width: 100%;
+  height: 100%;
+  object-fit:cover;
+ 
+}
+.brandName{ font-size:28px; font-weight:900;color: white; letter-spacing:0.4px; }
+.brandTag{ font-size:18px; color:#444; color: white; margin-top:2px; }
+
+.topnav{ display:flex; gap:15px; flex-wrap:wrap;}
+.topnav a{
+  color:#0b1220;
+  font-size: 19px;
+  color: white;
+  font-weight:650;
+  padding:10px 12px;
+  border-radius:10px;
+}
+.topnav a:hover{ background: rgba(0,33,71,0.08); }
+
+.homeHero{
+  margin-top: 14px;
+  border-radius:18px;
+  overflow:hidden;
+  background: rgba(0,33,71,0.52);
+  border: 1px solid rgba(255,255,255,0.25);
+}
+.homeHeroInner{ padding:28px 18px; color:#fff; }
+.homeHeroInner h1{ margin:0; font-size:30px; }
+.homeHeroInner p{ margin:10px 0 0; max-width:780px; opacity:0.95; }
+
+.homeCtas{ margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+
+.pill{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  background: rgba(255,255,255,0.18);
+  border:1px solid rgba(255,255,255,0.25);
+}
+
+.homeGrid{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap:14px;
+}
+@media (max-width: 980px){ .homeGrid{ grid-template-columns: 1fr; } }
+
+.infoCard{
+  background: rgba(255,255,255,0.75);
+  border-radius:16px;
+  padding:16px;
+  border: 1px solid rgba(255,255,255,0.40);
+}
+.infoCard h3{ margin:0; }
+.infoCard ul{ margin:10px 0 0; padding-left:18px; }
+.infoCard li{ margin:6px 0; }
+
+.statsRow{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+.statBox{
+  flex:1; min-width:120px;
+  background: rgba(0,33,71,0.06);
+  border: 1px solid rgba(0,33,71,0.12);
+  border-radius:14px;
+  padding:10px;
+}
+.statNum{ font-size:20px; font-weight:900; color: var(--primary); }
+.statLabel{ font-size:12px; color:#444; }
+
+.footer{
+  margin-top:14px;
+  padding:14px 8px;
+  text-align:center;
+  color: rgba(255,255,255,0.92);
+}
+
+/* ===== TRANSPARENT NAVBAR ===== */
+.nav{
+  background: rgba(255,255,255,0.15) !important;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.25);
+}
+
+.nav a{
+  color: white !important;
+}
+
+.nav .badge{
+  background: rgba(255,255,255,0.3);
+  color: white;
+}
+
+
+
+/* ===== ULTRA TRANSPARENT NAVBAR ===== */
+.nav{
+  background: rgba(255,255,255,0.08) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.nav a{
+  color: white !important;
+}
+
+
+
+/* ===== EXTREME TRANSPARENT NAVBAR ===== */
+.nav{
+  background: rgba(255,255,255,0.03) !important;
+  backdrop-filter: blur(6px);
+  border-bottom: none;
+}
+
+.nav a{
+  color: white !important;
+}
+
+
+
+/* ===== SAME DARK GLASS EFFECT EVERYWHERE ===== */
+
+/* Top ITM header box */
+.topbar{
+  background: rgba(0,33,71,0.20) !important;
+  backdrop-filter: blur(0.1px);
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  color: white !important;
+}
+
+/* Hero already same style */
+.homeHero{
+  background: rgba(0,33,71,0.20) !important;
+}
+
+/* All cards below */
+.card,
+.infoCard{
+  background: rgba(0,33,71,0.20) !important;
+  backdrop-filter: blur(0.1px);
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  color: white !important;
+}
+
+/* Make text white */
+.card h3,
+.infoCard h3,
+.card li,
+.infoCard li,
+.card p,
+.infoCard p{
+  color: white !important;
+}
+
+/* Navbar */
+.nav{
+  background: rgba(0,33,71,0.20) !important;
+  backdrop-filter: blur(0.1px);
+  border-bottom: none !important;
+}
+
+.nav a{
+  color: white !important;
+}
+
+/* ===== ALL PAGES TEXT BLACK EXCEPT HOME PAGE ===== */
+
+/* Sab pages ka text black */
+body:not(.college-theme),
+body:not(.college-theme) h1,
+body:not(.college-theme) h2,
+body:not(.college-theme) h3,
+body:not(.college-theme) h4,
+body:not(.college-theme) h5,
+body:not(.college-theme) h6,
+body:not(.college-theme) p,
+body:not(.college-theme) li,
+body:not(.college-theme) span,
+body:not(.college-theme) a,
+body:not(.college-theme) td,
+body:not(.college-theme) th,
+body:not(.college-theme) small {
+  color: #111 !important;
+}
+
+/* Buttons remain white */
+.btn,
+.btn.secondary,
+.btn.danger,
+.btn * {
+  color: #fff !important;
+}
+/* =======================================================
+   SMART COLOR SYSTEM (ALL PAGES EXCEPT HOME)
+   ======================================================= */
+
+/* Apply only when NOT home page */
+body:not(.college-theme) {
+
+  /* Default text black */
+  color: #111;
+}
+
+/* Headings, paragraphs, list, links */
+body:not(.college-theme) h1,
+body:not(.college-theme) h2,
+body:not(.college-theme) h3,
+body:not(.college-theme) h4,
+body:not(.college-theme) h5,
+body:not(.college-theme) h6,
+body:not(.college-theme) p,
+body:not(.college-theme) li,
+body:not(.college-theme) span,
+body:not(.college-theme) small,
+body:not(.college-theme) td,
+body:not(.college-theme) th,
+body:not(.college-theme) label {
+  color: #111 !important;
+}
+
+/* Cards & containers (light backgrounds) */
+body:not(.college-theme) .card,
+body:not(.college-theme) .infoCard,
+body:not(.college-theme) .container {
+  color: #111 !important;
+}
+
+/* Tables */
+body:not(.college-theme) .table {
+  color: #111 !important;
+}
+
+body:not(.college-theme) .table th {
+  background: #002147;
+  color: #fff !important; /* dark header → white text */
+}
+
+/* Dark sections → auto white text */
+body:not(.college-theme) .nav,
+body:not(.college-theme) .dark-section,
+body:not(.college-theme) .bg-dark {
+  color: #fff !important;
+}
+
+body:not(.college-theme) .nav a {
+  color: #fff !important;
+}
+
+/* Buttons */
+body:not(.college-theme) .btn {
+  color: #fff !important; /* button text always white */
+}
+
+
+/* ===== FIX USERNAME COLOR IN NAVBAR ===== */
+
+.nav small,
+.nav .username,
+.nav span {
+  color: #ffffff !important;
+}
+
+
+
+
+
+
+
+.modal-backdrop{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 10000;
+}
+
+.modal-card{
+  width: min(760px, 100%);
+  max-height: 90vh;
+  overflow: auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+}
+
+.notice-full-content{
+  margin-top: 14px;
+  white-space: pre-wrap;
+  line-height: 1.65;
+}
+
+.notice-attachment-box{
+  margin-top: 16px;
+  padding: 14px;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 12px;
+  background: rgba(0,0,0,0.03);
+}
+
+.notice-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.muted{ color: #666; }
+
+.nav-with-dot{ position: relative; display: inline-flex; align-items: center; gap: 6px; }
+.notif-dot{ width: 10px; height: 10px; border-radius: 999px; background: #d90429; display: inline-block; box-shadow: 0 0 0 2px rgba(255,255,255,0.7); }
+.quick-link-card{ position: relative; }
+.quick-link-card .notif-dot-corner{ position: absolute; top: 10px; right: 10px; width: 12px; height: 12px; border-radius: 999px; background: #d90429; box-shadow: 0 0 0 2px rgba(255,255,255,0.75); }
+.profile-photo-preview{ width: 110px; height: 110px; object-fit: cover; border-radius: 16px; border: 1px solid rgba(0,0,0,0.12); background: #fff; }
+
+
+/* ==== v3 navbar visibility + dashboard cleanup ==== */
+body:not(.college-theme) .nav .links .nav-link{ color:#111 !important; font-weight:600; }
+body:not(.college-theme) .nav .links .nav-link:hover{ background: rgba(0,33,71,0.14) !important; color:#111 !important; }
+body:not(.college-theme) .nav .links .nav-link.active{ background:#002147 !important; color:#fff !important; }
+body:not(.college-theme) .nav .links .nav-link.active .nav-with-dot,
+body:not(.college-theme) .nav .links .nav-link.active .nav-with-dot *{ color:#fff !important; }
+body:not(.college-theme) .nav small.muted{ color:#fff !important; }
+.quick-link-card strong{ display:inline-block; padding-right: 14px; }
+.profile-photo-preview{ display:block; }
+
+
+.icon-btn{
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.92);
+  color: var(--primary);
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon-btn:hover{ background: rgba(0,33,71,0.08); }
+
+/* ==== v10 tpo nav cleanup + home scroll masking ==== */
+body.college-theme .nav{
+  position: sticky;
+  top: 0;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+body.college-theme .nav::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(4, 18, 38, 0.62), rgba(4, 18, 38, 0.44));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: -1;
+}
+
+body.college-theme .topbar,
+body.college-theme .homeHero,
+body.college-theme .homeGrid,
+body.college-theme .footer{
+  position: relative;
+  z-index: 0;
+}
+
+body.college-theme .nav .links .nav-link.active{
+  background: rgba(255,255,255,0.14) !important;
+  color: #fff !important;
+}
+
+
+/* ===== FINAL HOME LOCK + FIXED NAV OVERRIDES ===== */
+:root{
+  --nav-h-final: 72px;
+  --home-gap-final: 18px;
+}
+
+body{
+  padding-top: var(--nav-h-final);
+}
+
+.nav{
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  min-height: var(--nav-h-final) !important;
+  background: rgba(1, 24, 50, 0.2) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.16) !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.home-locked{
+  padding-top: 18px !important;
+}
+
+body.home-screen-lock{
+  overflow: hidden;
+}
+
+body.home-screen-lock .home-locked{
+  min-height: calc(100vh - var(--nav-h-final));
+}
+
+body.home-screen-lock .home-fixed-shell{
+  position: fixed;
+  top: calc(var(--nav-h-final) + var(--home-gap-final));
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1100px, calc(100vw - 40px));
+  max-height: calc(100vh - var(--nav-h-final) - (var(--home-gap-final) * 2));
+  overflow: hidden;
+}
+
+body.home-screen-lock .topbar,
+body.home-screen-lock .homeHero,
+body.home-screen-lock .homeGrid{
+  flex-shrink: 0;
+}
+
+body.home-screen-lock .footer{
+  display: none;
+}
+
+body.home-screen-lock .topbar{
+  margin-top: 0;
+}
+
+body.home-screen-lock .homeGrid{
+  margin-bottom: 0;
+}
+
+
+/* ===== v12 home scroll under fixed navbar (hidden behind nav) ===== */
+body.college-theme{
+  overflow-y: auto !important;
+}
+
+body.college-theme .nav{
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 9999;
+  background: rgba(0,33,71,0.28) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.14) !important;
+}
+
+body.college-theme .container.home-page-flow{
+  position: relative;
+  padding-top: 18px !important;
+}
+
+body.college-theme .home-fixed-shell{
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  width: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+body.college-theme .topbar{
+  margin-top: 16px !important;
+}
+
+body.college-theme .footer{
+  display: block !important;
+}
+
+
+/* ===== home about section upgraded ===== */
+.homeAboutGrid{
+  grid-template-columns: 1fr !important;
+}
+
+.aboutFullCard{
+  width: 100%;
+  min-height: 300px;
+  padding: 24px 28px;
+}
+
+.aboutEyebrow{
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.aboutFullCard h3{
+  margin: 0 0 14px;
+  font-size: 31px;
+  line-height: 1.25;
+  color: #ffffff !important;
+}
+
+.aboutFullCard p{
+  margin: 0 0 14px;
+  max-width: 100%;
+  font-size: 17px;
+  line-height: 1.85;
+  color: rgba(255,255,255,0.96) !important;
+}
+
+.aboutFullCard p:last-child{
+  margin-bottom: 0;
+}
+
+@media (max-width: 980px){
+  .aboutFullCard{
+    padding: 20px;
+    min-height: auto;
+  }
+
+  .aboutFullCard h3{
+    font-size: 24px;
+  }
+
+  .aboutFullCard p{
+    font-size: 15px;
+    line-height: 1.75;
+  }
+}
+
+/* ===== FINAL NAVBAR BLUE WITHOUT BLUR ===== */
+.nav,
+body.college-theme .nav,
+body:not(.college-theme) .nav {
+  background: #011128 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.nav::before,
+body.college-theme .nav::before {
+  content: none !important;
+  display: none !important;
+}
+
+.nav a,
+.nav small,
+.nav span,
+.nav .badge,
+.nav .links .nav-link,
+.nav .brand,
+.nav .left {
+  color: #ffffff !important;
+}
+
+.nav .links .nav-link.active {
+  background: #003c99 !important;
+  color: #ffffff !important;
+}
+
+.nav .links .nav-link:hover {
+  background: rgba(255,255,255,0.12) !important;
+  color: #ffffff !important;
+}
+
+/* ===== ITM COLLEGE TYPING (PERFECT) ===== */
+
+.brandName {
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  width: 0;
+  border-right: 2px solid white;
+
+  animation:
+    itmTyping 7s steps(28, end) infinite,
+    itmCursor 7s linear infinite;
+}
+
+/* Typing animation */
+@keyframes itmTyping {
+  0% { width: 0 }
+  20% { width: 28ch; }   /* text length */
+  80% { width: 28ch; }   /* hold */
+  100% { width: 0 }      /* reset */
+}
+
+/* Cursor control */
+@keyframes itmCursor {
+  0%, 19% { border-right: 2px solid white; }
+  20%, 100% { border-right: none; }
+}
+
+
+/* ===== HERO TEXT TYPING (PERFECT FIX) ===== */
+
+.homeHeroInner h1 {
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  width: 0;
+  border-right: 2px solid white;
+
+  animation:
+    heroTyping 8s steps(45, end) infinite,
+    heroCursor 8s linear infinite;
+}
+
+/* Typing animation */
+@keyframes heroTyping {
+  0% { width: 0 }
+  25% { width: 39ch; }   /* 👈 exact text length */
+  80% { width: 44ch; }   /* hold */
+  100% { width: 0 }      /* reset */
+}
+
+/* Cursor control */
+@keyframes heroCursor {
+  0%, 24% { border-right: 2px solid white; }
+  25%, 100% { border-right: none; }
+}
+
+
+/* ===== STUDENT / TPO NAVBAR TEXT ALWAYS WHITE ===== */
+
+/* navbar links */
+.nav a,
+.nav .nav-link,
+.nav .links .nav-link,
+.nav .links a,
+.nav .brand,
+.nav .brand *,
+.nav .left,
+.nav .left *,
+.nav small,
+.nav span,
+.nav .username,
+.nav .badge {
+  color: #ffffff !important;
+}
+
+/* active link */
+.nav .links .nav-link.active,
+.nav .links a.active {
+  color: #ffffff !important;
+  background: rgba(255,255,255,0.12) !important;
+}
+
+/* hover */
+.nav .links .nav-link:hover,
+.nav .links a:hover {
+  color: #ffffff !important;
+  background: rgba(255,255,255,0.10) !important;
+}
+
+/* student / tpo pages pe bhi force white */
+body:not(.college-theme) .nav,
+body:not(.college-theme) .nav a,
+body:not(.college-theme) .nav .nav-link,
+body:not(.college-theme) .nav .links .nav-link,
+body:not(.college-theme) .nav .links a,
+body:not(.college-theme) .nav small,
+body:not(.college-theme) .nav span,
+body:not(.college-theme) .nav .username,
+body:not(.college-theme) .nav .badge {
+  color: #ffffff !important;
+}
+
+/* logout/button text if navbar me ho */
+.nav .btn,
+.nav button,
+.nav .icon-btn {
+  color: #ffffff !important;
+}
+
+
+
+
+/* ===== PERFECT HOVER FOR BLUE NAVBAR ===== */
+
+.nav .links .nav-link,
+.nav .links a {
+  color: #ffffff !important;
+  transition: all 0.25s ease;
+}
+
+/* 🔥 HOVER (light glass highlight) */
+.nav .links .nav-link:hover,
+.nav .links a:hover {
+  background: rgba(255, 255, 255, 0.18) !important;  /* 👈 light highlight */
+  color: #ffffff !important;
+
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.4);
+
+  transform: translateY(-2px);
+
+  /* glow */
+  box-shadow: 0 4px 15px rgba(255,255,255,0.25);
+}
+
+/* 🔥 ACTIVE LINK */
+.nav .links .nav-link.active {
+  background: rgba(255,255,255,0.25) !important;
+  color: #ffffff !important;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.5);
+
+  box-shadow: 0 6px 18px rgba(255,255,255,0.35);
+}
+
+/* click effect */
+.nav .links .nav-link:active {
+  transform: scale(0.96);
+}
+
+
+
+/* ===== FINAL NAVBAR VISIBILITY FIX FOR ALL MODULES ===== */
+
+/* sab links/modules visible */
+.nav .links .nav-link,
+.nav .links a,
+.nav a,
+.nav button,
+.nav .btn,
+.nav span,
+.nav small {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease !important;
+}
+
+/* hover pe kabhi hide na ho */
+.nav .links .nav-link:hover,
+.nav .links a:hover,
+.nav a:hover,
+.nav button:hover,
+.nav .btn:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.22) !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.22) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  text-shadow: 0 0 1px rgba(0,0,0,0.35) !important;
+}
+
+/* active module bhi clear dikhe */
+.nav .links .nav-link.active,
+.nav .links a.active {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.28) !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.55) !important;
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.26) !important;
+}
+
+/* focus pe bhi same */
+.nav .links .nav-link:focus,
+.nav .links a:focus,
+.nav .links .nav-link:focus-visible,
+.nav .links a:focus-visible {
+  outline: none !important;
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.22) !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+}
+
+/* student/tpo pages pe bhi force */
+body:not(.college-theme) .nav .links .nav-link,
+body:not(.college-theme) .nav .links a,
+body:not(.college-theme) .nav a,
+body:not(.college-theme) .nav button,
+body:not(.college-theme) .nav .btn,
+body:not(.college-theme) .nav span,
+body:not(.college-theme) .nav small {
+  color: #ffffff !important;
+}
+
+/* un pages me hover */
+body:not(.college-theme) .nav .links .nav-link:hover,
+body:not(.college-theme) .nav .links a:hover,
+body:not(.college-theme) .nav a:hover,
+body:not(.college-theme) .nav button:hover,
+body:not(.college-theme) .nav .btn:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.22) !important;
+  border: 1px solid rgba(255,255,255,0.45) !important;
+}
+
+/* dark text override ko rokne ke liye */
+body:not(.college-theme) .nav * {
+  color: #ffdada !important;
+}
